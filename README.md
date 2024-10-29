@@ -1,2 +1,1 @@
-# middleware-integration
-A repository for middleware integration between Go agents and AI SDK
+This repository is empty. Any task executed on it should be considered a new capability and needs to be created.
