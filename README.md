@@ -63,7 +63,7 @@ This project implements middleware to facilitate communication between Go enviro
 
 ## Overview
 
-The middleware is designed to handle queries from the generated UI and process them using the AI SDK and PostgreSQL. It ensures complete contextual synchronicity between the generated UI and generated AI for each query. The multi-modal magnetic highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool provides efficient and scalable data processing.
+The middleware is designed to handle queries from the generated UI and process them using the AI SDK and PostgreSQL. It ensures complete contextual synchronicity between the generated UI and generated AI for each query. Highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool provides efficient and scalable data processing.
 
 ## License
 
