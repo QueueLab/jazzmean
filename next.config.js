@@ -19,4 +19,13 @@ module.exports = {
     AI_SDK_API_KEY: process.env.AI_SDK_API_KEY,
     POSTGRES_URL: process.env.POSTGRES_URL,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.experiments = {
+        asyncWebAssembly: true,
+        layers: true,
+      };
+    }
+    return config;
+  },
 };

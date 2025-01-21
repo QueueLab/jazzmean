@@ -39,13 +39,19 @@ This project implements middleware to facilitate communication between Go enviro
    npm install
    ```
 
-4. Run the middleware server:
+4. Compile the Go WebAssembly module:
+
+   ```sh
+   GOOS=js GOARCH=wasm go build -o public/agent.wasm agent.go
+   ```
+
+5. Run the middleware server:
 
    ```sh
    go run main.go
    ```
 
-5. Run the Next.js application:
+6. Run the Next.js application:
 
    ```sh
    npm run dev
