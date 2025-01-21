@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/conneroisu/groq-go/extensions/e2b"
 )
 
 func main() {
@@ -14,6 +15,12 @@ func main() {
 		log.Fatalf("Failed to initialize middleware: %v", err)
 	}
 	defer middleware.Close()
+
+	// Initialize the e2b client
+	e2bClient, err := e2b.NewClient()
+	if err != nil {
+		log.Fatalf("Failed to initialize e2b client: %v", err)
+	}
 
 	// Set up the router
 	router := httprouter.New()
