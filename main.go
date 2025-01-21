@@ -27,6 +27,7 @@ func main() {
 
 	// Define routes and handlers
 	router.POST("/query", middleware.HandleQuery)
+	router.POST("/subtract", middleware.HandleSubtract)
 
 	// Start the server
 	log.Println("Starting server on :8080")
