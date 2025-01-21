@@ -55,7 +55,27 @@ func (m *Middleware) HandleQuery(w http.ResponseWriter, r *http.Request, _ httpr
 	json.NewEncoder(w).Encode(response)
 }
 
+func (m *Middleware) HandleSubtract(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	var params struct {
+		A int `json:"a"`
+		B int `json:"b"`
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&params); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	result := params.A - params.B
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(map[string]int{"result": result})
+}
+
 func (m *Middleware) processQuery(query string) (interface{}, error) {
+	if query == "subtract" {
+		return map[string]string{"response": "Subtraction query received"}, nil
+	}
 	// Placeholder for AI SDK and PostgreSQL processing logic
 	return map[string]string{"response": "Processed query: " + query}, nil
 }

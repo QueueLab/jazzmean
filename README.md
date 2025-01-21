@@ -9,6 +9,7 @@ This project implements middleware to facilitate communication between Go enviro
 - Multi-modal magnetic highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool
 - User authentication and authorization with role-based access control
 - Real-time query monitoring and analytics with a dashboard for visualization
+- Subtraction feature for handling subtraction queries
 
 ## Prerequisites
 
@@ -30,6 +31,7 @@ This project implements middleware to facilitate communication between Go enviro
    ```sh
    export AI_SDK_API_KEY=your_ai_sdk_api_key
    export POSTGRES_URL=postgres://user:password@localhost:5432/dbname
+   export GO_AGENT_URL=http://localhost:8080
    ```
 
 3. Install dependencies:
@@ -66,6 +68,14 @@ This project implements middleware to facilitate communication between Go enviro
    ```
 
 2. The middleware will process the query with the AI SDK and PostgreSQL, and return the response.
+
+3. Send a POST request to the middleware server for subtraction:
+
+   ```sh
+   curl -X POST http://localhost:8080/subtract -H "Content-Type: application/json" -d '{"a": 10, "b": 5}'
+   ```
+
+4. The middleware will process the subtraction query and return the result.
 
 ## Overview
 
