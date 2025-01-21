@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"strings"
+	"encoding/json"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/julienschmidt/httprouter"
@@ -92,6 +93,32 @@ func (m *Middleware) OAuthCallback(w http.ResponseWriter, r *http.Request, _ htt
 	}
 	defer resp.Body.Close()
 
+	var userInfo map[string]interface{}
+	if err := json.NewDecoder(resp.Body).Decode(&userInfo); err != nil {
+		http.Error(w, "Failed to decode user info", http.StatusInternalServerError)
+		return
+	}
+
+	// Store user information in the database
+	if err := m.StoreUserInfo(userInfo); err != nil {
+		http.Error(w, "Failed to store user info", http.StatusInternalServerError)
+		return
+	}
+
 	// Process user info and generate JWT token
 	// Placeholder for user info processing and JWT token generation
+}
+
+func (m *Middleware) GetUserInfo(username string) (map[string]interface{}, error) {
+	var userInfo map[string]interface{}
+	err := m.dbPool.QueryRow(context.Background(), "SELECT info FROM users WHERE username=$1", username).Scan(&userInfo)
+	if err != nil {
+		return nil, err
+	}
+	return userInfo, nil
+}
+
+func (m *Middleware) StoreUserInfo(userInfo map[string]interface{}) error {
+	_, err := m.dbPool.Exec(context.Background(), "INSERT INTO users (username, info) VALUES ($1, $2) ON CONFLICT (username) DO UPDATE SET info = $2", userInfo["email"], userInfo)
+	return err
 }
