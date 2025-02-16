@@ -1,10 +1,10 @@
 # Middleware for AI SDK Integration
 
-This project implements middleware to facilitate communication between Go environment-aware agents and an AI SDK using Next.js. The middleware ensures complete contextual synchronicity between the generated UI and generated AI for each query. It also implements multi-modal magnetic highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool.
+This project implements middleware to facilitate communication between environment-aware agents and an AI SDK using Next.js. The middleware ensures complete contextual synchronicity between the generated UI and generated AI for each query. It also implements multi-modal magnetic highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool.
 
 ## Features
 
-- Communication between Go environment-aware agents and AI SDK using Next.js
+- Communication between environment-aware agents and AI SDK using Next.js
 - Complete contextual synchronicity between generated UI and generated AI for each query
 - Multi-modal magnetic highly concurrent retrieval-augmented generation (RAG) with PostgreSQL using an ORM tool
 - User authentication and authorization with role-based access control
